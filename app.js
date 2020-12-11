@@ -50,12 +50,12 @@ function sendmail(req, res,Email) {
     <p>All Events, Guest Lecture info and Registration - https://celesta.tech
     (Make sure you register for the specific Event and Guest Lectures you are interested in.)</p>
     
-    <p>Regards\n
-    Team Celesta'20\n
+    <p>Regards<br>
+    Team Celesta'20<br>
     IIT Patna</p>
   `;
     let transporter = nodemailer.createTransport({
-        host: 'stud.iitp.ac.in',
+        host: 'smtp.gmail.com',
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
@@ -68,9 +68,9 @@ function sendmail(req, res,Email) {
     });
 
     let mailOptions = {
-        from: '"Celesta Dev" <debarghya_1901me19@iitp.ac.in>', // sender address
+        from: '"Celesta Dev" <debarghyamaity@gmail.com>', // sender address
         to: Email, // list of receivers
-        subject: 'Just For Check', // Subject line // plain text body
+        subject: "CELESTA'20 INTO THE CYBERVERSE", // Subject line // plain text body
         html: emailbody,// html body
         attachments: [{
             filename: 'shankar_venugopal.jpeg',
