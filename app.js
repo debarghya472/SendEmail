@@ -29,13 +29,30 @@ app.listen(2000, () => {
 
 function sendmail(req, res,Email) {
     const emailbody = `
-    <p>This is a test mail</p>
-    <h3>Contact </h3>
-    <ul>  
-      <li>Name: ${req.body.name}</li>
-    </ul>
-    <h3>Message</h3>
-    <p>${req.body.message}</p>
+    <p><b>Greetings from Celesta’20</b></p>
+
+    <p>Here's something to look forward to. As you all know, this time Celesta'20 will be held online. Through our exciting events and guest lectures, we have made sure that Celesta'20 will lift your spirits up amidst this lockdown lifestyle. We don't want anyone to be left out. Thus, Celesta'20 proudly presents its awesome series guest lectures, starting from Tomorrow (12th December).</p>
+    
+    <p>Tomorrow we have Dr. Shankar Venugopal, Vice President of Mahindra and Mahindra (Turnover of Rs.45,000 Crore in 2020 Q1), delivering a highly anticipated lecture on Skills desirable for the future at 10:00 AM.
+    For the folks uninitiated about Dr. Shankar Venugopal, he holds ten international patents  and has trained 1000 + inventors and entrepreneurs. Having shaped so many brilliant careers, he has a deep understanding of the skills required in the professional world. So wherever you wish to go into the future, this lecture will be definitely helpful.</p>
+    
+    <p>Tomorrow at 5:00 PM, we have Avelo Roy, Managing Director of Kolkata Ventures delivering a lecture as well, on the topic of Principles of Entrepreneurship. He is known as a Godfather for startups. In just the first 3 years of Kolkata Ventures, he has incubated and led more than 400 startups to success.</p>
+    
+    
+    <p><b>Set Reminder now!</b></p>
+    
+    <p>Dr. Shankar Venugopal, 12th morning 10 am - https://youtu.be/CPSf7wINJOY
+    Mr. Avelo Roy, 12th morning 5pm - https://youtu.be/UgdXQ4FanLo</p>
+    
+    <p>The point is, we want everyone to benefit from the efforts Team Celesta'20 has put to arrange these and many more guest lectures and events online. The Guest Lectures are free as well. 
+    We hope that everyone shows up and no one misses out on this rare oppurtinity to interact with such personalites.</p>
+    
+    <p>All Events, Guest Lecture info and Registration - https://celesta.tech
+    (Make sure you register for the specific Event and Guest Lectures you are interested in.)</p>
+    
+    <p>Regards\n
+    Team Celesta'20\n
+    IIT Patna</p>
   `;
     let transporter = nodemailer.createTransport({
         host: 'stud.iitp.ac.in',
@@ -51,11 +68,14 @@ function sendmail(req, res,Email) {
     });
 
     let mailOptions = {
-        from: '"Debarghya Maity" <debarghya_1901me19@iitp.ac.in>', // sender address
+        from: '"Celesta Dev" <debarghya_1901me19@iitp.ac.in>', // sender address
         to: Email, // list of receivers
-        subject: 'Just For Check', // Subject line
-        text: 'Hello world', // plain text body
-        html: emailbody// html body
+        subject: 'Just For Check', // Subject line // plain text body
+        html: emailbody,// html body
+        attachments: [{
+            filename: 'shankar_venugopal.jpeg',
+            path: './shankar_venugopal.jpeg'
+        }]
     };
     var success = 0;
     transporter.sendMail(mailOptions, (error, info) => {
