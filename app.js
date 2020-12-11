@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const config = require('./config/config');
 const path = require('path');
 
 const app = express();
@@ -28,8 +29,8 @@ app.post('/send',(req,res)=>{
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'debarghya_1901me19@iitp.ac.in', // generated ethereal user
-            pass: 'Deb@9831105701'  // generated ethereal password
+            user: config.email, // generated ethereal user
+            pass: config.password  // generated ethereal password
         },
         tls:{
           rejectUnauthorized:false
