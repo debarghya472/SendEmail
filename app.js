@@ -61,11 +61,12 @@ function sendmail(req, res,Email) {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             res.send("Unsuccessful attempt")
+            success =1;
             return console.log(error);
         }
         console.log('Message sent: %s', info.messageId);
         // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-        success =1;
+        
         res.send("email sent successfully");
     });
     if (success == 1)
