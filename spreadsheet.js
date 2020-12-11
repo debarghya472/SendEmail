@@ -10,6 +10,10 @@ async function test() {
 
     await doc.loadInfo(); // loads document properties and worksheets
     console.log(doc.title);
+    const sheet = doc.sheetsByIndex[0];
+    const rows = await sheet.getRows(); 
+     rows[0].sent = 'Y';
+     rows[0].save();
 
 }
 test();

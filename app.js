@@ -57,16 +57,21 @@ function sendmail(req, res,Email) {
         text: 'Hello world', // plain text body
         html: emailbody// html body
     };
-
+    var success = 0;
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             res.send("Unsuccessful attempt")
             return console.log(error);
         }
         console.log('Message sent: %s', info.messageId);
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        success =1;
         res.send("email sent successfully");
     });
+    if (success == 1)
+       return true;
+    else
+        return false;
 }
 
 async function accessSpreadSheet(req,res) {
@@ -87,8 +92,11 @@ async function accessSpreadSheet(req,res) {
     // console.log(rows[0].email);
 
     rows.forEach(row =>{
-        console.log(row.email);
-        sendmail(req,res,row.email);
-    })
 
+        if(!sendmail(req,res,row.email)){
+            console.log(row.email);
+            row.sent = 'Y';
+            row.save();
+        }
+    });
 }
